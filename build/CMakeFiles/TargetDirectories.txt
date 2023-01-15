@@ -1,0 +1,3 @@
+C:/Users/itayl/Desktop/Semesters/semester_e/OOP/HW5/OOP_HW5/build/CMakeFiles/Test1.dir
+C:/Users/itayl/Desktop/Semesters/semester_e/OOP/HW5/OOP_HW5/build/CMakeFiles/edit_cache.dir
+C:/Users/itayl/Desktop/Semesters/semester_e/OOP/HW5/OOP_HW5/build/CMakeFiles/rebuild_cache.dir
