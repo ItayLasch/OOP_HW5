@@ -128,29 +128,29 @@ Test1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test1.dir\build.make CMakeFiles/Test1.dir/build
 .PHONY : Test1/fast
 
-Provided/part2/Part2Examples.obj: Provided/part2/Part2Examples.cpp.obj
-.PHONY : Provided/part2/Part2Examples.obj
+Provided/part2/testCheckWinSolved1.obj: Provided/part2/testCheckWinSolved1.cpp.obj
+.PHONY : Provided/part2/testCheckWinSolved1.obj
 
 # target to build an object file
-Provided/part2/Part2Examples.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test1.dir\build.make CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.obj
-.PHONY : Provided/part2/Part2Examples.cpp.obj
+Provided/part2/testCheckWinSolved1.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test1.dir\build.make CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj
+.PHONY : Provided/part2/testCheckWinSolved1.cpp.obj
 
-Provided/part2/Part2Examples.i: Provided/part2/Part2Examples.cpp.i
-.PHONY : Provided/part2/Part2Examples.i
+Provided/part2/testCheckWinSolved1.i: Provided/part2/testCheckWinSolved1.cpp.i
+.PHONY : Provided/part2/testCheckWinSolved1.i
 
 # target to preprocess a source file
-Provided/part2/Part2Examples.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test1.dir\build.make CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.i
-.PHONY : Provided/part2/Part2Examples.cpp.i
+Provided/part2/testCheckWinSolved1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test1.dir\build.make CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.i
+.PHONY : Provided/part2/testCheckWinSolved1.cpp.i
 
-Provided/part2/Part2Examples.s: Provided/part2/Part2Examples.cpp.s
-.PHONY : Provided/part2/Part2Examples.s
+Provided/part2/testCheckWinSolved1.s: Provided/part2/testCheckWinSolved1.cpp.s
+.PHONY : Provided/part2/testCheckWinSolved1.s
 
 # target to generate assembly for a file
-Provided/part2/Part2Examples.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test1.dir\build.make CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.s
-.PHONY : Provided/part2/Part2Examples.cpp.s
+Provided/part2/testCheckWinSolved1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Test1.dir\build.make CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.s
+.PHONY : Provided/part2/testCheckWinSolved1.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Test1
-	@echo ... Provided/part2/Part2Examples.obj
-	@echo ... Provided/part2/Part2Examples.i
-	@echo ... Provided/part2/Part2Examples.s
+	@echo ... Provided/part2/testCheckWinSolved1.obj
+	@echo ... Provided/part2/testCheckWinSolved1.i
+	@echo ... Provided/part2/testCheckWinSolved1.s
 .PHONY : help
 
 

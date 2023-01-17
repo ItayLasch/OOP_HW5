@@ -68,28 +68,28 @@ include CMakeFiles/Test1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Test1.dir/flags.make
 
-CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.obj: CMakeFiles/Test1.dir/flags.make
-CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.obj: ../Provided/part2/Part2Examples.cpp
-CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.obj: CMakeFiles/Test1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.obj"
-	C:\TDM-GCC-64\bin\x86_64-w64-mingw32-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.obj -MF CMakeFiles\Test1.dir\Provided\part2\Part2Examples.cpp.obj.d -o CMakeFiles\Test1.dir\Provided\part2\Part2Examples.cpp.obj -c C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\Part2Examples.cpp
+CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj: CMakeFiles/Test1.dir/flags.make
+CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj: ../Provided/part2/testCheckWinSolved1.cpp
+CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj: CMakeFiles/Test1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj"
+	C:\TDM-GCC-64\bin\x86_64-w64-mingw32-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj -MF CMakeFiles\Test1.dir\Provided\part2\testCheckWinSolved1.cpp.obj.d -o CMakeFiles\Test1.dir\Provided\part2\testCheckWinSolved1.cpp.obj -c C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\testCheckWinSolved1.cpp
 
-CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.i"
-	C:\TDM-GCC-64\bin\x86_64-w64-mingw32-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\Part2Examples.cpp > CMakeFiles\Test1.dir\Provided\part2\Part2Examples.cpp.i
+CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.i"
+	C:\TDM-GCC-64\bin\x86_64-w64-mingw32-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\testCheckWinSolved1.cpp > CMakeFiles\Test1.dir\Provided\part2\testCheckWinSolved1.cpp.i
 
-CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.s"
-	C:\TDM-GCC-64\bin\x86_64-w64-mingw32-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\Part2Examples.cpp -o CMakeFiles\Test1.dir\Provided\part2\Part2Examples.cpp.s
+CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.s"
+	C:\TDM-GCC-64\bin\x86_64-w64-mingw32-g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\testCheckWinSolved1.cpp -o CMakeFiles\Test1.dir\Provided\part2\testCheckWinSolved1.cpp.s
 
 # Object files for target Test1
 Test1_OBJECTS = \
-"CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.obj"
+"CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj"
 
 # External object files for target Test1
 Test1_EXTERNAL_OBJECTS =
 
-Test1.exe: CMakeFiles/Test1.dir/Provided/part2/Part2Examples.cpp.obj
+Test1.exe: CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj
 Test1.exe: CMakeFiles/Test1.dir/build.make
 Test1.exe: CMakeFiles/Test1.dir/linklibs.rsp
 Test1.exe: CMakeFiles/Test1.dir/objects1.rsp

@@ -9,7 +9,7 @@ struct GameBoard
 {
     typedef L board;
     constexpr static int width = board::head::size;
-    constexpr static length = board::size;
+    constexpr static int length = board::size;
 };
 
 #endif
