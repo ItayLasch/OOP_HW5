@@ -10,7 +10,6 @@ CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj: \
  C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\MoveVehicle.h \
  C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\Utilities.h \
  C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\TransposeList.h \
- C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\Printer.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++/iostream \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -141,4 +140,5 @@ CMakeFiles/Test1.dir/Provided/part2/testCheckWinSolved1.cpp.obj: \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++/bits/basic_ios.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++/bits/ostream.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++/istream \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++/bits/istream.tcc
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++/bits/istream.tcc \
+ C:\Users\itayl\Desktop\Semesters\semester_e\OOP\HW5\OOP_HW5\Provided\part2\Printer.h

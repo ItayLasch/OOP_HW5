@@ -61,20 +61,29 @@ struct SetAtIndex<0, U, List<T, TT...>>
     typedef typename PrependList<U, List<TT...>>::list list;
 };
 
+// ========= ReverseListAux ========= //
+
+template <typename L, typename ACC, int IDX>
+struct ReverseListAux;
+
+template <typename T, typename ACC, int IDX, typename... TT>
+struct ReverseListAux<List<T, TT...>, ACC, IDX>
+{
+    typedef typename ReverseListAux<List<TT...>, typename SetAtIndex<IDX, T, ACC>::list, IDX - 1>::list list;
+};
+
+template <typename... CC>
+struct ReverseListAux<List<>, List<CC...>, -1>
+{
+    typedef List<CC...> list;
+};
+
 // ========= ReverseList ========= //
 template <typename L>
 struct ReverseList;
-
-template <typename... TT, typename T>
-struct ReverseList<List<TT..., T>>
+template <typename... TT>
+struct ReverseList<List<TT...>>
 {
-    typedef typename PrependList<T, typename ReverseList<List<TT...>>::list>::list list;
+    typedef typename ReverseListAux<List<TT...>, List<TT...>, List<TT...>::size - 1>::list list;
 };
-
-template <>
-struct ReverseList<List<>>
-{
-    typedef List<> list;
-};
-
 #endif

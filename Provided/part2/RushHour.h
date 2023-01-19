@@ -2,8 +2,6 @@
 #define RUSH_HOUR
 
 #include "MoveVehicle.h"
-#include "Printer.h"
-#include <iostream>
 // ========== GET_CAR_LINE ========== //
 template <CellType CT, int Index, typename L>
 struct getCarLine;
@@ -28,7 +26,6 @@ template <int RowIndex, CellType CT, typename T, typename... TT>
 struct getCar<RowIndex, CT, List<T, TT...>>
 {
 private:
-    // static_assert((RowIndex < sizeof...(TT)), "red car isn't found");
     constexpr static int colNum = getCarLine<CT, 0, T>::idx;
 
 public:
@@ -53,10 +50,11 @@ struct CheckWin<GameBoard<List<TT...>>>
 private:
     constexpr static int colNum = getCar<0, CellType::X, List<TT...>>::idx;
     typedef typename GetAtIndex<getCar<0, CellType::X, List<TT...>>::row_idx, List<TT...>>::value row_list;
-    constexpr static int lastRedCarIndex = GetLastIndexOfCar<colNum, CellType::X, row_list>::idx;
+    constexpr static int lastRedCarIndex = GetLastIndexOfCar<colNum, colNum, CellType::X, row_list>::idx;
+    constexpr static int game_board_width = GameBoard<List<TT...>>::width;
 
 public:
-    constexpr static bool result = isLegalMove<GameBoard<List<TT...>>::width - lastRedCarIndex - 1, colNum, row_list>::islegal;
+    constexpr static bool result = isLegalMove<game_board_width - lastRedCarIndex - 1, lastRedCarIndex + 1, row_list>::islegal;
 };
 
 // ========== CHECK_SOLUTION ========== //
@@ -72,7 +70,7 @@ private:
     typedef typename MoveVehicle<GameBoard<List<TT...>>, rowNum, colNum, U::direction, U::amount>::board board;
 
 public:
-    constexpr static bool result = CheckSolution<board, UU...>::result;
+    constexpr static bool result = CheckSolution<board, List<UU...>>::result;
 };
 
 template <typename... TT>

@@ -12,42 +12,51 @@
 template <CellType CT, Direction Dir, int Amount>
 struct Move
 {
-    static_assert(CT == CellType::EMPTY, "cell type can't be empty!");
+    static_assert(CT != CellType::EMPTY, "cell type can't be empty!");
     constexpr static CellType type = CT;
     constexpr static Direction direction = Dir;
     constexpr static int amount = Amount;
 };
 
-/*template <Direction Dir, int Amount>
-struct Move<EMPTY, Dir, Amount>
-{
-    static_assert(false, "cell type can't be empty!");
-};*/
-
 // ========= IS_VALID_DIRECTION ========= //
 
-template <Direction D>
+template <Direction D1, Direction D2>
 struct isValidDirection
 {
-    constexpr static bool value = (D == LEFT || D == RIGHT);
+    constexpr static bool value = ConditionalInteger<(D1 == RIGHT || D1 == LEFT), (D2 == RIGHT || D2 == LEFT), (D2 == UP || D2 == DOWN)>::value;
 };
 
 // ========= Get_Last_Index_Of_Car ========= //
 
 template <int I, CellType CT, typename L>
-struct GetLastIndexOfCar;
+struct GetLastIndexOfCarAux;
 
 template <int I, CellType CT, typename T, typename... TT>
-struct GetLastIndexOfCar<I, CT, List<T, TT...>>
+struct GetLastIndexOfCarAux<I, CT, List<T, TT...>>
 {
     // Find last BoardCell in which car appears.
-    constexpr static int idx = ConditionalInteger<CT == T::type, GetLastIndexOfCar<(I + 1), CT, List<TT...>>::idx, I - 1>::value;
+    constexpr static int idx = ConditionalInteger<CT == T::type, GetLastIndexOfCarAux<(I + 1), CT, List<TT...>>::idx, I - 1>::value;
 };
 
 template <int I, CellType CT>
-struct GetLastIndexOfCar<I, CT, List<>>
+struct GetLastIndexOfCarAux<I, CT, List<>>
 {
-    constexpr static int idx = -1;
+    constexpr static int idx = I - 1;
+};
+
+template <int I, int Index, CellType CT, typename L>
+struct GetLastIndexOfCar;
+
+template <int I, int Index, CellType CT, typename T, typename... TT>
+struct GetLastIndexOfCar<I, Index, CT, List<T, TT...>>
+{
+    constexpr static int idx = GetLastIndexOfCar<I - 1, Index, CT, List<TT...>>::idx;
+};
+
+template <int Index, CellType CT, typename T, typename... TT>
+struct GetLastIndexOfCar<0, Index, CT, List<T, TT...>>
+{
+    constexpr static int idx = GetLastIndexOfCarAux<Index, CT, List<T, TT...>>::idx;
 };
 
 // ========= IS_LEGAL_MOVE ========= //
@@ -92,6 +101,55 @@ struct MoveCar<RBound, LBound, 0, List<TT...>>
 // ========= MOVE_VEHICLE ========= //
 
 template <typename GB, int R, int C, Direction Dir, int A>
+struct MoveVehicleAux;
+
+template <typename L, int R, int C, int A>
+struct MoveVehicleAux<GameBoard<L>, R, C, RIGHT, A>
+{
+private:
+    typedef typename GetAtIndex<R, L>::value rowList;
+    typedef typename ReverseList<rowList>::list reverse_list;
+    constexpr static CellType car_type = GetAtIndex<C, rowList>::value::type;
+    constexpr static int rowSize = rowList::size;
+    constexpr static int lastRight = GetLastIndexOfCar<C, C, GetAtIndex<C, typename GetAtIndex<R, L>::value>::value::type, rowList>::idx;
+    constexpr static int lastLeft = rowSize - 1 - GetLastIndexOfCar<(rowSize - C - 1), (rowSize - C - 1), car_type, reverse_list>::idx;
+    static_assert(isLegalMove<A, lastRight + 1, rowList>::islegal, "Another car in path");
+
+public:
+    typedef GameBoard<typename SetAtIndex<R, typename MoveCar<lastRight, lastLeft, A, rowList>::list, L>::list> board;
+};
+
+template <typename L, int R, int C, int A>
+struct MoveVehicleAux<GameBoard<L>, R, C, LEFT, A>
+{
+private:
+    typedef typename GetAtIndex<R, L>::value rowList;
+    typedef typename ReverseList<rowList>::list reverse_list;
+    constexpr static int rowSize = rowList::size;
+    typedef typename SetAtIndex<R, reverse_list, L>::list templist;
+
+    typedef typename MoveVehicleAux<GameBoard<templist>, R, (rowSize - C - 1), RIGHT, A>::board::board reversed_updated_board;
+    typedef typename GetAtIndex<R, reversed_updated_board>::value reversed_rowList;
+    typedef typename ReverseList<reversed_rowList>::list updated_list;
+    typedef typename SetAtIndex<R, updated_list, reversed_updated_board>::list newlist;
+
+public:
+    typedef GameBoard<newlist> board;
+};
+
+template <typename L, int R, int C, int A>
+struct MoveVehicleAux<GameBoard<L>, R, C, UP, A>
+{
+    typedef GameBoard<typename Transpose<typename MoveVehicleAux<GameBoard<typename Transpose<L>::matrix>, C, R, LEFT, A>::board::board>::matrix> board;
+};
+
+template <typename L, int R, int C, int A>
+struct MoveVehicleAux<GameBoard<L>, R, C, DOWN, A>
+{
+    typedef GameBoard<typename Transpose<typename MoveVehicleAux<GameBoard<typename Transpose<L>::matrix>, C, R, RIGHT, A>::board::board>::matrix> board;
+};
+
+template <typename GB, int R, int C, Direction Dir, int A>
 struct MoveVehicle;
 
 template <typename L, int R, int C, Direction Dir, int A>
@@ -99,31 +157,10 @@ struct MoveVehicle<GameBoard<L>, R, C, Dir, A>
 {
     static_assert((R < GameBoard<L>::length && R >= 0), "Row is out of bounds");
     static_assert((C < GameBoard<L>::width) && C >= 0, "Coloum is out of bounds");
-    static_assert((GetAtIndex<C, GetAtIndex<R, L>>::value::type != EMPTY), "Cell is Empty");
-    static_assert((isValidDirection<GetAtIndex<C, GetAtIndex<R, L>>::value::direction>::value), "invalid direction");
-
-private:
-    typedef typename GetAtIndex<R, L>::value rowList;
-    typedef typename ReverseList<rowList>::list reverse_list;
-    constexpr static int rowSize = rowList::size;
-    constexpr static int lastRight = GetLastIndexOfCar<C, GetAtIndex<C, GetAtIndex<R, L>>::value::type, rowList>::idx;
-    constexpr static int lastLeft = rowSize - 1 - GetLastIndexOfCar<(rowSize - C - 1), GetAtIndex<C, rowList>::value::type, reverse_list>::idx;
-    static_assert(ConditionalInteger<Dir == RIGHT, isLegalMove<A, lastRight + 1, rowList>::islegal, isLegalMove<A, rowSize - lastLeft - 1, reverse_list>::islegal>::value, "Another car in path");
+    static_assert((GetAtIndex<C, typename GetAtIndex<R, L>::value>::value::type != EMPTY), "Cell is Empty");
+    static_assert((isValidDirection<GetAtIndex<C, typename GetAtIndex<R, L>::value>::value::direction, Dir>::value), "invalid direction");
 
 public:
-    typedef typename Conditional<Dir == RIGHT, GameBoard<typename SetAtIndex<R, typename MoveCar<lastRight, lastLeft, A, rowList>::list, L>::list>, GameBoard<typename SetAtIndex<R, typename MoveCar<rowSize - lastLeft - 1, rowSize - lastRight - 1, A, reverse_list>::list, L>::list>>::value board;
+    typedef typename MoveVehicleAux<GameBoard<L>, R, C, Dir, A>::board board;
 };
-
-template <typename L, int R, int C, int A>
-struct MoveVehicle<GameBoard<L>, R, C, UP, A>
-{
-    typedef GameBoard<typename Transpose<typename MoveVehicle<GameBoard<typename Transpose<L>::matrix>, R, C, LEFT, A>::board::board>::matrix> board;
-};
-
-template <typename L, int R, int C, int A>
-struct MoveVehicle<GameBoard<L>, R, C, DOWN, A>
-{
-    typedef GameBoard<typename Transpose<typename MoveVehicle<GameBoard<typename Transpose<L>::matrix>, R, C, RIGHT, A>::board::board>::matrix> board;
-};
-
 #endif
